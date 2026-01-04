@@ -27,3 +27,6 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
 vim.keymap.set("t", "<C-Left>", "<cmd>vertical resize -5<cr>")
 vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +5<cr>")
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { desc = "Window command from terminal" })
+
+-- map coy/paste
+vim.opt.clipboard = "unnamedplus"
