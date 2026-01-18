@@ -4,12 +4,9 @@ return {
     dependencies = {
       "ziontee113/icon-picker.nvim",
       keys = {
-        "<Leader>i",
-        "<cmd>IconPickerNormal<cr>",
-        "<Leader>y",
-        "<cmd>IconPickerYank<cr>",
-        "<C-i>",
-        "<cmd>IconPickerInsert<cr>",
+        { "<Leader>i", "<cmd>IconPickerNormal<cr>", desc = "Icon picker" },
+        { "<Leader>y", "<cmd>IconPickerYank<cr>", desc = "Icon picker yank" },
+        { "<C-i>", "<cmd>IconPickerInsert<cr>", mode = "i", desc = "Icon picker insert" },
       },
       config = function()
         require("icon-picker").setup({
