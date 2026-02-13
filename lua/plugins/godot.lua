@@ -14,4 +14,26 @@ return {
       },
     },
   },
+<<<<<<< HEAD
+=======
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = { "gdscript", "godot_resource" },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters = {
+        gdformat = {
+          command = "/opt/homebrew/bin/gdformat",
+        },
+      },
+      formatters_by_ft = {
+        gdscript = { "gdformat" },
+      },
+    },
+  },
+>>>>>>> b67eb0c (fixed gdscript config)
 }
