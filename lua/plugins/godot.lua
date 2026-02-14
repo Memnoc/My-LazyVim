@@ -14,8 +14,7 @@ return {
       },
     },
   },
-<<<<<<< HEAD
-=======
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -35,5 +34,4 @@ return {
       },
     },
   },
->>>>>>> b67eb0c (fixed gdscript config)
 }
