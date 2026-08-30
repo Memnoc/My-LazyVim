@@ -4,8 +4,8 @@
 
 ---- Keymapping for lsp lsp_lines
 -- vim.keymap.set("", "<Leader>ps", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
-function _G.set_terminal_keymaps()
-  local opts = { buffer = 0 }
+local function set_terminal_keymaps(event)
+  local opts = { buffer = event.buf }
   vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
   vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
   vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
@@ -15,15 +15,18 @@ function _G.set_terminal_keymaps()
   vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+local terminal_group = vim.api.nvim_create_augroup("user_terminal_keymaps", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = terminal_group,
+  pattern = "term://*",
+  callback = set_terminal_keymaps,
+})
+
 -- open default terminal vertically
 vim.keymap.set({ "n", "t" }, "<C-/>", function()
   Snacks.terminal(nil, { win = { position = "right" } })
 end, { desc = "Terminal (vertical)" })
+
 -- resize splits
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
-vim.keymap.set("t", "<C-Left>", "<cmd>vertical resize -5<cr>")
-vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +5<cr>")
-vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { desc = "Window command from terminal" })
+vim.keymap.set({ "n", "t" }, "<C-Left>", "<cmd>vertical resize -5<cr>", { desc = "Decrease window width" })
+vim.keymap.set({ "n", "t" }, "<C-Right>", "<cmd>vertical resize +5<cr>", { desc = "Increase window width" })

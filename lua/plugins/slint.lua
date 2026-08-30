@@ -1,3 +1,3 @@
 return {
-  { "slint-ui/vim-slint" },
+  { "slint-ui/vim-slint", ft = "slint" },
 }
