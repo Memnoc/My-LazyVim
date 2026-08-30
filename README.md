@@ -25,6 +25,18 @@ rsync -a --exclude=.git My-LazyVim/ ~/.config/nvim/
 Start Neovim and let Lazy install the configured plugins. Run `:checkhealth`
 after installation to identify any optional tools needed for your languages.
 
+## Update the active config
+
+After pulling or editing the repository, run:
+
+```sh
+./bin/sync-config
+```
+
+The script copies the repository into Neovim's configuration directory and
+removes files that are no longer tracked. The active config remains a regular
+directory rather than a symlink.
+
 ## Credits
 
 Thanks to [LazyVim](https://github.com/LazyVim/LazyVim).

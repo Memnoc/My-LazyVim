@@ -1,0 +1,29 @@
+name: Quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lua:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: JohnnyMorganz/stylua-action@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: v2.5.0
+          args: --check .
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+      - name: Check Lua syntax
+        shell: bash
+        run: |
+          while IFS= read -r file; do
+            nvim --clean --headless -u NONE "+lua assert(loadfile('$file'))" +qa
+          done < <(find lua -type f -name '*.lua' | sort)

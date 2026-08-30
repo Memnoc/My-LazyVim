@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+config_dir="$(nvim --clean --headless --cmd 'lua io.write(vim.fn.stdpath("config"))' +qa 2>/dev/null)"
+
+if [[ -z "$config_dir" || "$(basename "$config_dir")" != "nvim" ]]; then
+  echo "Refusing to sync to unexpected config path: $config_dir" >&2
+  exit 1
+fi
+
+mkdir -p "$config_dir"
+rsync -a --delete --exclude=.git "$repo_dir/" "$config_dir/"
+
+echo "Synced $repo_dir to $config_dir"
