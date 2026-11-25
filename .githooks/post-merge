@@ -1,0 +1,3 @@
+#!/bin/sh
+# After `git pull` (fast-forward/merge): sync the repo into Neovim's config dir.
+exec "$(git rev-parse --show-toplevel)/bin/sync-config"

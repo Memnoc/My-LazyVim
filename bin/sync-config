@@ -11,6 +11,6 @@ if [[ -z "$config_dir" || "$(basename "$config_dir")" != "nvim" ]]; then
 fi
 
 mkdir -p "$config_dir"
-rsync -a --delete --exclude=.git "$repo_dir/" "$config_dir/"
+rsync -a --delete --exclude=.git --exclude=.githooks "$repo_dir/" "$config_dir/"
 
 echo "Synced $repo_dir to $config_dir"

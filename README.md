@@ -37,6 +37,12 @@ The script copies the repository into Neovim's configuration directory and
 removes files that are no longer tracked. The active config remains a regular
 directory rather than a symlink.
 
+To run it automatically after every `git pull`, enable the hooks once per clone:
+
+```sh
+git config core.hooksPath .githooks
+```
+
 ## Credits
 
 Thanks to [LazyVim](https://github.com/LazyVim/LazyVim).
